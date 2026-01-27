@@ -1,5 +1,4 @@
-GET /recommendations/popular
-GET /recommendations/new-arrivals
+GET /recommendations/in-stock
 GET /recommendations/top-rated
 
 {

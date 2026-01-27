@@ -1,3 +1,5 @@
+GET /search/?wireless+mouse
+
 {
   "query": "wireless mouse",
   "results": [

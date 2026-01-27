@@ -1,4 +1,4 @@
-GET /catalog/products/{id}
+GET /catalog/{id}
 
 {
   "id": "sku-001",
