@@ -94,7 +94,7 @@ At what point do we introduce a gateway then?
 
 **Worst case scenario** - The client calls the BFF and its not working, the bff crashed... what do we do? With a gateway the request can easily be routed to a more stable working copy of the same BFF.
 
-![alt text](image.png)
+![diagram](diagram.png)
 
 ## Sources
 
