@@ -1,0 +1,10 @@
+GET /catalog/products/{id}
+
+{
+  "id": "sku-001",
+  "name": "Wireless Mouse",
+  "price": 29.99,
+  "availability": { "inStock": true, "quantity": 42 },
+  "rating": 4.6
+}
+

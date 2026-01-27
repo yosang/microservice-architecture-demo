@@ -1,0 +1,102 @@
+### API Gateway
+
+Infrastructure, no business logic, only communication towards the **Backend-For-Frontend**.
+
+#### Responsibilities:
+
+- Authentication / Authorization (JWT) enforcement.
+- Rate limiting / throttling.
+- Request routing.
+- Basic request/response logging.
+- Versioning (`/v1`, `/v2`...).
+
+### Backend-for-frontend
+
+Business logic, adapts and transforms required data from microservices to the frontend.
+
+#### Responsibilities:
+
+- Call microservices in parallel style.
+- Aggregate responses.
+- Shape data for the frontend.
+- Hide backend service details.
+- Handle failures and implement error handling.
+
+Example response
+
+```js
+{
+  "id": "sku-001",
+  "name": "Wireless Mouse",
+  "price": 29.99,
+  "availability": {
+    "inStock": true,
+    "quantity": 42
+  }
+}
+
+```
+
+#### Microservices
+
+Each service owns its data and rules.
+
+- Product service owns product data.
+- Inventory service owns inventory data.
+- Each microservice is internally consistent.
+- No services reaches eachothers databases.
+- No service knows about the BFF or the API gateway and its logic.
+
+### Architecture Design and Decision making questions
+
+#### Can I swap the frontend without touching the services?
+
+- Say we swap React for Angular for the frontend, our services should not be affected by this change.
+
+#### Can I change inventory logic without breaking the UI?
+
+- Say the shape of the microservices API change, instead of adjusting to these changes from the frontend, we just work with the BFF to still return what the frontend expect.
+
+#### Can I add mobile suport with a new BFF?
+
+- Mobile support usually requires smaller payloads, fewer fields and latency-friendly responses.
+- In this case, we could just implement a new BFF, specifically designed for the demands of a mobile frontend.
+- Each BFF would then call the same services but still shape data differently and scale independently.
+
+#### Can I add a new service without touching the gateway?
+
+- If there were to be a new service, we only need to deal with the BFF.
+- The gateway doesnt care what the BFF does as long as routing stays the same
+- The only time we should alter the gateway is if we need a new BFF (for a new category of microservices)
+
+#### Why not just call the BFF directly from the frontend?
+
+They serve different purposes, lets write out the differences:
+
+- **API Gateway**
+  - Acts a single entry point for clients to access multiple backend services
+  - Centralizes request management, routing, monitoring and authentication/authorization
+  - Minimal complexity
+  - Doesn't care about client types
+- **Backend-for-frontend**
+  - Acts as a dedicated client-specific backend service (mobile app, tv app etc...)
+  - Middleman between the frontend and various microservices
+  - High complexity, aggregates data and fetches data in parallel style
+  - Has to know the client-specific needs
+
+At what point do we introduce a gateway then?
+
+- When the BFF stops being a BFF...
+- That is when we want to introduce more complexity such as:
+  - **Authentication/authorization**: A BFF should only focus on business logic, auth should be separated.
+  - **Monitoring**: We gain more insight about traffic behaviour from capturing and observing request/responses from a centralised service such as a gateway instead of every single BFF.
+  - **Routing**: Incoming request should be directed to the appropiate BFF.
+
+**Worst case scenario** - The client calls the BFF and its not working, the bff crashed... what do we do? With a gateway the request can easily be routed to a more stable working copy of the same BFF.
+
+![alt text](image.png)
+
+## Sources
+
+- [Microsoft Backend-for-frontend](https://learn.microsoft.com/en-us/azure/architecture/patterns/backends-for-frontends#example)
+- [Microsoft API gateways](https://learn.microsoft.com/en-us/azure/architecture/microservices/design/gateway)
