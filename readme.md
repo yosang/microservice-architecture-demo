@@ -1,6 +1,6 @@
 ### API Gateway
 
-Infrastructure, no business logic, only communication towards the **Backend-For-Frontend**.
+Infrastructure focused, no business logic, only communication towards the **Backend-For-Frontend**.
 
 #### Responsibilities:
 
@@ -12,7 +12,7 @@ Infrastructure, no business logic, only communication towards the **Backend-For-
 
 ### Backend-for-frontend
 
-Business logic, adapts and transforms required data from microservices to the frontend.
+Business logic focused, adapts and transforms required data from microservices to the frontend.
 
 #### Responsibilities:
 
@@ -22,22 +22,35 @@ Business logic, adapts and transforms required data from microservices to the fr
 - Hide backend service details.
 - Handle failures and implement error handling.
 
-Example response
+#### Catalog Web BFF
 
-```js
-{
-  "id": "sku-001",
-  "name": "Wireless Mouse",
-  "price": 29.99,
-  "availability": {
-    "inStock": true,
-    "quantity": 42
-  }
-}
+##### Business Logic
 
-```
+Transforms and aggregates data from products for web clients, inventory and reviews microservices.
 
-#### Microservices
+##### Endpoints
+
+- GET /catalog - Returns a list of products.
+- GET /catalog/:id - Returns one product.
+
+#### Catalog Mobile BFF
+
+##### Business Logic
+
+Transforms and aggregates data from products for mobile clients, inventory and reviews microservices.
+
+##### Endpoints
+
+- GET /catalog - Returns a list of products.
+- GET /catalog/:id - Returns one product.
+
+##### BFF specific features
+
+- Pagination (limit/offset based)
+- In-memory caching
+- Compressed responses
+
+#### Microservices overview
 
 Each service owns its data and rules.
 
