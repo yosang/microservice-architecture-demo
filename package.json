@@ -1,0 +1,8 @@
+{
+  "devDependencies": {
+    "concurrently": "^9.2.1"
+  },
+  "scripts": {
+    "start": "concurrently 'cd api-gateway && npm start' 'cd catalog-bff-mobile && npm start' 'cd catalog-bff-web && npm start' 'cd inventory-service && npm start' 'cd products-service && npm start' 'cd review-service && npm start'"
+  }
+}

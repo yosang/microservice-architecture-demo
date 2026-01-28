@@ -66,4 +66,4 @@ function isCacheExpired(key) {
   return Date.now() - cacheEntry.timestamp > cache_ttl;
 }
 
-app.listen(3004, () => console.log("BFF service is running on 3004"));
+app.listen(3004, () => console.log("Catalog Mobile BFF service is running on 3004"));

@@ -31,4 +31,4 @@ app.get("/catalog/:id", async (req, res) => {
 // Add the ability to add data to the microservices
 // app.post("/catalog", () => {});
 
-app.listen(3003, () => console.log("BFF service is running on 3003"));
+app.listen(3003, () => console.log("Catalog Web BFF service is running on 3003"));
