@@ -12,6 +12,20 @@ This pattern enhances flexibility and allows teams to use different technology s
 - Each service manages its own database, which prevents data coupling.
 - Each service is developed around specific business logic.
 
+# Usage
+
+Make sure you have `Node` installed, this project required `Node v22`.
+
+1. Clone the project with `git clone https://github.com/yosang/microservice-architecture-pattern`
+2. Install root project dependencies with `npm install`
+3. Install microservice dependencies with `npm build`
+4. Run all the services with `npm start`
+5. Test the API gateway endpoints from the browser:
+   ```
+   GET /api/v1/web/products - Routes request to Products Catalog BFF for desktop clients
+   GET /api/v1/mobile/products - Routes request to Products Catalog BFF for mobile clients
+   ```
+
 ### API Gateway Pattern
 
 Infrastructure focused, no business logic, protects and serves the bff's with requests from clients.
@@ -134,3 +148,7 @@ At what point do we introduce a gateway then?
 
 - [Microsoft Backend-for-frontend](https://learn.microsoft.com/en-us/azure/architecture/patterns/backends-for-frontends#example)
 - [Microsoft API gateways](https://learn.microsoft.com/en-us/azure/architecture/microservices/design/gateway)
+
+# Author
+
+[Yosmel Chiang](https://github.com/yosang)
