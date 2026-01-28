@@ -147,7 +147,7 @@ At what point do we introduce a gateway then?
 
 ![diagram](diagram.png)
 
-## Sources
+## Learning resources
 
 - [Microsoft Backend-for-frontend](https://learn.microsoft.com/en-us/azure/architecture/patterns/backends-for-frontends#example)
 - [Microsoft API gateways](https://learn.microsoft.com/en-us/azure/architecture/microservices/design/gateway)
