@@ -21,13 +21,14 @@ Make sure you have `Node` installed, this project requires `Node v22`.
 3. Install microservice dependencies with `npm run build`
 4. Run all the services with `npm start`
 5. The API gateway runs on port `5000`, test the endpoints from the browser:
-   ```
-   GET http://localhost:5000/api/v1/web/products - Retreives a list of products for desktop clients.
-   GET http://localhost:5000/api/v1/mobile/products - Retreives a list of products for mobile clients, scaled down in data size to enhance latency on mobiles.
-   GET http://localhost:5000/api/v1/mobile/products/?offset=20&&limit=10 - Applies offset and limit queries
-   ```
 
-The datasets used for this project is AI generated.
+- `GET` http://localhost:5000/api/v1/web/products - Retreives a list of products for desktop clients.
+- `GET` http://localhost:5000/api/v1/mobile/products - Retreives a list of products for mobile clients, scaled down in data size to enhance latency on mobiles.
+- `GET` http://localhost:5000/api/v1/mobile/products/?offset=20&&limit=10 - Applies offset and limit queries
+
+6. To test the API gateway rate limiter run `npm run rate-test`
+
+**DISCLAIMER**: The datasets used for this project are AI generated.
 
 ## API Gateway Pattern
 
@@ -45,8 +46,8 @@ Infrastructure focused, no business logic, protects and serves the bff's with re
 
 ##### Endpoints
 
-- GET /api/v1/web/products - Routes request to Products Catalog BFF for desktop clients
-- GET /api/v1/mobile/products - Routes request to Products Catalog BFF for mobile clients
+- `GET` /api/v1/web/products - Routes request to Products Catalog BFF for desktop clients
+- `GET` /api/v1/mobile/products - Routes request to Products Catalog BFF for mobile clients
 
 ## Backend-for-frontends Pattern
 
@@ -68,8 +69,8 @@ Transforms and aggregates products, inventory and reviews data from microservice
 
 ##### Endpoints
 
-- GET /products - Returns a list of products tailored for desktop frontends.
-- GET /products/:id - Returns one product.
+- `GET` /products - Returns a list of products tailored for desktop frontends.
+- `GET` /products/:id - Returns one product.
 
 ### Catalog Mobile BFF
 
